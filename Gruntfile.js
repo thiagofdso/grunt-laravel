@@ -12,9 +12,9 @@ module.exports = function(grunt) {
                 },
                 files: {
                     //compilando frontend.less em frontend.css
-                    "./public/assets/stylesheets/frontend.css":"./app/assets/stylesheets/frontend.less",
+                    "./public/assets/stylesheets/frontend.css":"./resources/assets/less/frontend.less",
                     //compilando backend.less em backend.css
-                    "./public/assets/stylesheets/backend.css":"./app/assets/stylesheets/backend.less"
+                    "./public/assets/stylesheets/backend.css":"./resources/assets/less/backend.less"
                 }
             }
         },
@@ -23,7 +23,7 @@ module.exports = function(grunt) {
                 separator: ';',
             },
             javascript: {
-                src: ['./vendor/components/jquery/jquery.min.js','./vendor/twitter/bootstrap/dist/js/bootstrap.min.js','./app/assets/javascript/frontend.js'],
+                src: ['./vendor/components/jquery/jquery.min.js','./vendor/twitter/bootstrap/dist/js/bootstrap.min.js','./resources/assets/javascript/frontend.js'],
                 dest: './public/assets/javascript/frontend.js',
             },
         },
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
         },
         phpunit: {
             classes: {
-                dir: 'app/tests/'   //a localização dos testes
+                dir: 'resources/tests/'   //a localização dos testes
             },
             options: {
                 bin: 'vendor/bin/phpunit',
@@ -48,21 +48,21 @@ module.exports = function(grunt) {
         },
         watch: {
             js: {
-                files: ['./app/assets/javascript/*.*'],   //arquivos monitorados
+                files: ['./resources/assets/javascript/*.*'],   //arquivos monitorados
                 tasks: ['concat:javascript','uglify'],     //tarefas executadas
                 options: {
                     livereload: true                        //atualiza o navegador
                 }
             },
             less: {
-                files: ['./app/assets/stylesheets/*.*'],  //arquivos monitorados
+                files: ['./resources/assets/less/*.*'],  //arquivos monitorados
                 tasks: ['less'],                          //tarefas executadas
                 options: {
                     livereload: true                        //atualiza o navegador
                 }
             },
             tests: {
-                files: ['app/controllers/*.php','app/models/*.php'],  //a tarefa vai ser executada só quando salvar arquivo nessa localização
+                files: ['resources/controllers/*.php','resources/models/*.php'],  //a tarefa vai ser executada só quando salvar arquivo nessa localização
                 tasks: ['phpunit']
             }
         }
